@@ -231,14 +231,11 @@
                     <a href="#mycarousel" class="carousel-control-next" role="button" data-slide="next">
                         <span class="carousel-control-next-icon"></span>
                     </a>
-                    <div class="btn-group" id="carouselButtons">
-                        <button class="btn btn-danger btn-sm" id="carousel-pause">
-                            <span class="fa fa-pause"></span>
-                        </button>
-                        <button class="btn btn-danger btn-sm" id="carousel-play">
-                            <span class="fa fa-play"></span>
-                        </button>
-                    </div>
+                   
+                    <button class="btn btn-danger btn-sm" id="carousel-button">
+                        <span class="fa fa-pause"></span>
+                    </button>
+                        
                 </div>
             </div>
         </div>
@@ -337,13 +334,20 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function(){
-            $("#mycarousel").carousel( {interval: 2000} );
-            $("#carousel-pause").click(function(){
-                $("#mycarousel").carousel('pause');
+            $("#mycarousel").carousel( {interval: 1000} );
+             $("#carousel-button").click(function(){
+                if ($("#carousel-button").children("span").hasClass('fa-pause')) {
+                    $("#mycarousel").carousel('pause');
+                    $("#carousel-button").children("span").removeClass('fa-pause');
+                    $("#carousel-button").children("span").addClass('fa-play');
+                }
+                else if ($("#carousel-button").children("span").hasClass('fa-play')){
+                    $("#mycarousel").carousel('cycle');
+                    $("#carousel-button").children("span").removeClass('fa-play');
+                    $("#carousel-button").children("span").addClass('fa-pause');                    
+                }
             });
-            $("#carousel-play").click(function(){
-                $("#mycarousel").carousel('cycle');
-            });
+           
         });
     </script>
 
